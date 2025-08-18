@@ -1,0 +1,8 @@
+# IDE-specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Maven target directory
+target/
