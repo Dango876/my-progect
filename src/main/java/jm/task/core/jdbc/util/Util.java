@@ -4,17 +4,57 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Util {
-    public static Connection getConnection() {
-        try {
-            String url = "jdbc:mysql://localhost:3306/world";
-            String username = "root";
-            String password = "root";
+import java.util.Properties;
+import jm.task.core.jdbc.model.User;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-            return DriverManager.getConnection(url, username, password);
+
+public class Util {
+
+    private static final String url = "jdbc:mysql://localhost:3306/world";
+    private static final String user = "root";
+    private static final String password = "root";
+
+    public static Connection getConnection() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            if (!con.isClosed()) {
+                System.out.println("Соединение с БД установлено");
+            }
         } catch (SQLException e) {
+            System.err.println("Не удалось загрузить класс драйвера БД");
+        }
+        return con;
+    }
+
+    private static SessionFactory sessionFactory = null;
+
+    static {
+        try {
+            Properties settings = new Properties();
+            settings.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/world");
+            settings.setProperty("hibernate.connection.username", "root");
+            settings.setProperty("hibernate.connection.password", "root");
+            settings.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
+            settings.setProperty("hibernate.hbm2ddl.auto", "create");
+
+            sessionFactory = new org.hibernate.cfg.Configuration()
+                    .addProperties(settings)
+                    .addAnnotatedClass(User.class)
+                    .buildSessionFactory();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+    }
+
+    public static Session getSession() throws HibernateException {
+        return sessionFactory.openSession();
+    }
+
+    public static void close() throws HibernateException {
+        getSession().close();
     }
 }
