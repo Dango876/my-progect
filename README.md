@@ -4,3 +4,4 @@
 4. Connected to the database - getConnection() {- в этом методе надо реализовать подключение к БД.
 5. Private field - UserServiceImpl - заприватить поля No static - private static final
 6. Connection conn - не делать статичным
+7. внес изменения
