@@ -1,6 +1,8 @@
-1. Removed- .idea убрать из репозитория
-2. Delete - public static Util getInstance() { - этот метод не надо
-3. Delete - private static Properties getProps() throws IOException { - это не надо
-4. Connected to the database - getConnection() {- в этом методе надо реализовать подключение к БД.
-5. Private field - UserServiceImpl - заприватить поля No static - private static final
-6. Connection conn - не делать статичным
+1. private static SessionFactory sessionFactory - не надо делать статичным - YES
+2. логику в статичном блоке перенести в метод getession и тоже не делать его статичным - YES
+3. проверять внутри методоа sessionFactory на null - YES
+4. throws HibernateException  - не пробрасывать исключения YES
+5. public static void close() - это не надо вообще YES
+6. UserServiceImpl - заприватить поля YES
+7. сделать 1 SessionFactory на класс YES
+8. sql запросы или вынести в константы или сразу писать в параметры метода YES
