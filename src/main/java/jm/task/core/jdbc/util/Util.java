@@ -1,16 +1,8 @@
 package jm.task.core.jdbc.util;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 import java.util.Properties;
 import jm.task.core.jdbc.model.User;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-
 
 public class Util {
 
@@ -20,20 +12,7 @@ public class Util {
 
     private SessionFactory sessionFactory = null;
 
-    public Connection getConnection() {
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(url, user, password);
-            if (!con.isClosed()) {
-                System.out.println("Соединение с БД установлено");
-            }
-        } catch (SQLException s) {
-            System.err.println("Не удалось загрузить класс драйвера БД");
-        }
-        return con;
-    }
-
-    public Session getSession() {
+    public SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Properties settings = new Properties();
@@ -51,6 +30,6 @@ public class Util {
                 throw new RuntimeException("Failed to initialize Hibernate SessionFactory", e);
             }
         }
-        return sessionFactory.openSession();
+        return sessionFactory;
     }
 }

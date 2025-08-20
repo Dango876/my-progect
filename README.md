@@ -1,8 +1,5 @@
-1. private static SessionFactory sessionFactory - не надо делать статичным - YES
-2. логику в статичном блоке перенести в метод getession и тоже не делать его статичным - YES
-3. проверять внутри методоа sessionFactory на null - YES
-4. throws HibernateException  - не пробрасывать исключения YES
-5. public static void close() - это не надо вообще YES
-6. UserServiceImpl - заприватить поля YES
-7. сделать 1 SessionFactory на класс YES
-8. sql запросы или вынести в константы или сразу писать в параметры метода YES
+1. public Session getSession() { - метод должен возвращать SessionFactory (название тоже верни как было) - YES
+2. public Connection getConnection() -  убери чтобы не мешалось - YES
+3. public void createUsersTable() throws SQLExceptio -  не пробрасывать исключения, обработать на самом нижнем уровне
+4. UserDaoHibernateImpl - должна быть 1 SessionFactory на класс, но отдельная Session на каждый метод - YES
+5. System.err.println("Ошибка при вставке"); - убирай тоже
