@@ -1,5 +1,10 @@
-1. url, логин, пароль - вынести в константы
+1.
+System.err.println("Ошибка подключения к базе данных!"); -  лучше не использовать это в качестве логирования
 
-2. public static Connection getConnection() -  не надо делать статичным
+2.
+private final Util util = new Util();
+private final Connection conn;
 
-3. UserServiceImpl  - заприватить поля
+public UserDaoJDBCImpl() {
+    this.conn = util.getConnection();
+} -  сократить до 1-й строчки YES

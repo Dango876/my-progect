@@ -13,7 +13,6 @@ public class UserServiceImpl implements UserService {
         userDao.createUsersTable();
     }
 
-
     public void dropUsersTable() {
         userDao.dropUsersTable();
     }
