@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 
 public class Util {
 
-    private static final String url = "jdbc:mysql://localhost:3306/world";
-    private static final String user = "root";
-    private static final String password = "root";
+    private static final String URL = "jdbc:mysql://localhost:3306/world";
+    private static final String USER = "root";
+    private static final String PASSWORD = "root";
 
     private SessionFactory sessionFactory = null;
 
@@ -16,9 +16,9 @@ public class Util {
         if (sessionFactory == null) {
             try {
                 Properties settings = new Properties();
-                settings.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/world");
-                settings.setProperty("hibernate.connection.username", "root");
-                settings.setProperty("hibernate.connection.password", "root");
+                settings.setProperty("hibernate.connection.url", URL);
+                settings.setProperty("hibernate.connection.username", USER);
+                settings.setProperty("hibernate.connection.password", PASSWORD);
                 settings.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
                 settings.setProperty("hibernate.hbm2ddl.auto", "update");
                 sessionFactory = new org.hibernate.cfg.Configuration()

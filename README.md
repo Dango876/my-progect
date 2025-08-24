@@ -1,5 +1,7 @@
-1. public Session getSession() { - метод должен возвращать SessionFactory (название тоже верни как было) - YES
-2. public Connection getConnection() -  убери чтобы не мешалось - YES
-3. public void createUsersTable() throws SQLExceptio -  не пробрасывать исключения, обработать на самом нижнем уровне - YES
-4. UserDaoHibernateImpl - должна быть 1 SessionFactory на класс, но отдельная Session на каждый метод - YES
-5. System.err.println("Ошибка при вставке"); - убирай тоже - YES
+1. private static final String url - константы пишутся В_ВЕРХНЕМ_РЕГИСТРЕ_ЧЕРЕЗ_НИЖНЕЕ_ПОДЧЕРКИВАНИЕ - YES
+2. sql запросы или сразу пиши в параметры метода или вынеси в константы - YES
+3. private void executeUpdate(String sql) { -  этот метод убери - YES
+4. ролбэки должны быть только на DML операциях - YES
+5. if (transaction != null) transaction.rollback(); -  не пиши в одну строчку - YES
+6. System.out.println("User " + name + " добавлен в базу"); 
+6. - засоряет код. Если надо для отладки - убирай перед тем как пушить - YES
